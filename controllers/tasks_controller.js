@@ -2,7 +2,7 @@ import { pool } from "../db/connection.js";
 
 //CREATE TASKS
 export const postTasks = async (req, res) => {
-	const sql = `insert into task_tracker.tasks (task_id, description, status, employee_id) values ($1, $2, $3, $4)`;
+	const sql = `insert into task_tracker.tasks (description, status, employee_id) values ($1, $2, $3)`;
 	const body = req.body;
 	const parameters = [body.task_id, body.description, body.status, employee_id];
 	const result = await pool.query(sql, parameters);
