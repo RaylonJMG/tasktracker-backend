@@ -10,15 +10,15 @@ export const postTasks = async (req, res) => {
 };
 //READ TASKS
 export const getTasks = async (req, res) => {
-	const sql = `select * task_id from task_tracker.tasks `;
+	const sql = `select * from task_tracker.tasks`;
 	const result = await pool.query(sql);
 	return res.json(result.rows);
 };
 //UPDATE TASKS
 export const putTasks = async (req, res) => {
 	const sql = `update task_tracker.status
-                        set status = $1
-                    where task_id = $2`;
+						set status = $1
+					where task_id = $2`;
 
 	const body = req.body;
 	const task_id = req.params.task_id;
