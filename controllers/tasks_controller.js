@@ -4,7 +4,7 @@ import { pool } from "../db/connection.js";
 export const postTasks = async (req, res) => {
 	const sql = `insert into task_tracker.tasks (description, status, employee_id) values ($1, $2, $3)`;
 	const body = req.body;
-	const parameters = [body.task_id, body.description, body.status, employee_id];
+	const parameters = [body.description, body.status, body.employee_id];
 	const result = await pool.query(sql, parameters);
 	return res.json({ message: "Object Created" });
 };
@@ -22,7 +22,7 @@ export const putTasks = async (req, res) => {
 
 	const body = req.body;
 	const task_id = req.params.task_id;
-	const parameters = [body.task_id, body.description, body.status, employee_id];
+	const parameters = [task_id, body.status];
 	const result = await pool.query(sql, parameters);
 	return res.json({ message: "Object Updated" });
 };

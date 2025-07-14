@@ -1,14 +1,14 @@
 import express from "express";
 import {
 	deleteEmployee,
-	getEmployees,
+	getEmployee,
 	postEmployee,
 	putEmployee,
 } from "../controllers/employee_controller.js";
 
 export const employee = express.Router();
 
-employee.get("/employee", getEmployees);
+employee.get("/employee", getEmployee);
 employee.post("/employee", postEmployee);
-employee.put("/employees/:id", putEmployee);
-employee.delete("/employees/:id ", deleteEmployee);
+employee.put("/employee/:employee_id", putEmployee);
+employee.delete("/employee/:employee_id", deleteEmployee);
