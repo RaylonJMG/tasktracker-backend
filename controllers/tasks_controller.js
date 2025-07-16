@@ -16,13 +16,13 @@ export const getTasks = async (req, res) => {
 };
 //UPDATE TASKS
 export const putTasks = async (req, res) => {
-	const sql = `update task_tracker.status
+	const sql = `update task_tracker.tasks
 						set status = $1
 					where task_id = $2`;
 
 	const body = req.body;
 	const task_id = req.params.task_id;
-	const parameters = [task_id, body.status];
+	const parameters = [body.status, task_id];
 	const result = await pool.query(sql, parameters);
 	return res.json({ message: "Object Updated" });
 };
