@@ -11,4 +11,4 @@ export const tasks = express.Router();
 tasks.get("/tasks", getTasks);
 tasks.post("/tasks", postTasks);
 tasks.put("/tasks/:task_id", putTasks);
-tasks.delete("/tasks/:task_id ", deleteTasks);
+tasks.delete("/tasks/:task_id", deleteTasks);
