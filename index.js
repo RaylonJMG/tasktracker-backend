@@ -5,7 +5,7 @@ import { employee } from "./routes/employeeRoute.js";
 
 const app = express();
 
-app.use(express.json()); //adds json communication
+app.use(express.json());
 app.use(cors());
 app.use("/api", employee);
 app.use("/api", tasks);

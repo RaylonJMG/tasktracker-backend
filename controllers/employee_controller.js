@@ -11,6 +11,7 @@ export const postEmployee = async (req, res) => {
 //READ EMPLOYEE
 export const getEmployee = async (req, res) => {
 	const sql = `select * from task_tracker.employee`;
+	const body = req.body;
 	const result = await pool.query(sql);
 	return res.json(result.rows);
 };
