@@ -15,6 +15,18 @@ export const getEmployee = async (req, res) => {
 	const result = await pool.query(sql);
 	return res.json(result.rows);
 };
+//GetByEmployee_ID
+export const getEmployeeId = async (req, res) => {
+	const { employee_id } = req.params;
+	const sql = `select employee_id, 
+                        name, 
+                        department,
+                        role 
+                from task_tracker.employee where employee_id = $1`;
+	const result = await pool.query(sql, [employee_id]);
+	return res.json(result.rows);
+};
+
 //UPDATE EMPLOYEE
 export const putEmployee = async (req, res) => {
 	const sql = `update task_tracker.employee

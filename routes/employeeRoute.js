@@ -5,10 +5,11 @@ import {
 	postEmployee,
 	putEmployee,
 } from "../controllers/employee_controller.js";
+import { validateToken } from "../middleware/authValidation.js";
 
 export const employee = express.Router();
 
-employee.get("/employee", getEmployee);
-employee.post("/employee", postEmployee);
-employee.put("/employee/:employee_id", putEmployee);
-employee.delete("/employee/:employee_id", deleteEmployee);
+employee.get("/employee", validateToken, getEmployee);
+employee.post("/employee", validateToken, postEmployee);
+employee.put("/employee/:employee_id", validateToken, putEmployee);
+employee.delete("/employee/:employee_id", validateToken, deleteEmployee);
