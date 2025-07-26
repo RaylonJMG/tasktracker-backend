@@ -1,4 +1,4 @@
-import { pool } from "../db/connection";
+import { pool } from "../db/connection.js";
 import jwt from "jsonwebtoken";
 
 export const postUser = async (req, res) => {
