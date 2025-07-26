@@ -3,6 +3,7 @@ import cors from "cors";
 import dotenv from "dotenv";
 import { tasks } from "./routes/tasksRoute.js";
 import { employee } from "./routes/employeeRoute.js";
+import { user } from "./routes/userRoute.js";
 import fs from "fs";
 import https from "https";
 

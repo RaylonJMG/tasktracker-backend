@@ -1,4 +1,3 @@
-import React from "react";
 import { pool } from "../db/connection";
 import jwt from "jsonwebtoken";
 

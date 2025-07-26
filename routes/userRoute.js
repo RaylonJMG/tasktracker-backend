@@ -1,4 +1,5 @@
 import express from "express";
+import { auth, postUser } from "../controllers/user_controller";
 
 export const user = express.Router();
 
