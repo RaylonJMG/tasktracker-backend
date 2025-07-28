@@ -16,7 +16,7 @@ export const getEmployee = async (req, res) => {
 	return res.json(result.rows);
 };
 //GetByEmployee_ID
-export const getEmployeeId = async (req, res) => {
+export const getEmployeeById = async (req, res) => {
 	const { employee_id } = req.params;
 	const sql = `select employee_id, 
                         name, 

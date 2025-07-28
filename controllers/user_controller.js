@@ -1,33 +1,45 @@
 import { pool } from "../db/connection.js";
-import jwt from "jsonwebtoken";
 
+//CREATE USER
 export const postUser = async (req, res) => {
-	const sql = `insert into task_tracker.userTable (email, password, first_name, last_name, birth_date) values ($1, $2, $3, $4, $5)`;
-	const { email, password, first_name, last_name, birth_date } = req.body;
-	const parameter = [email, password, first_name, last_name, birth_date];
-	const result = await pool.query(sql, parameter);
+	const sql = `insert into task_tracker.users(username, password, first_name, last_name, phone) values ($1, $2, $3, $4, $5)`;
+	const { username, password, first_name, last_name, phone } = req.body;
+	const parameters = [username, password, first_name, last_name, phone];
+	const result = await pool.query(sql, parameters);
 	return res.json({ message: "User Created" });
 };
-
-export const auth = async (req, res) => {
-	const sql = `select email, first_name, last_name from task_tracker.userTable`;
-	const { email, password } = req.body;
-	const result = await pool.query(sql, [email, password]);
-
-	if (result.rowCount === 1) {
-		console.log("Auth Pass");
-		const payload = result.rows[0];
-		const secret = "Hello";
-		const token = await jwt.sign(payload, secret, { expiresIn: "1h" });
-		return res.json({ token });
-	} else {
-		console.log("Arrghh!!");
-		return res.status(400).json({ message: "Auth Failed!" });
-	}
+//READ USER
+export const getUser = async (req, res) => {
+	const sql = `select * from task_tracker.users`;
+	const body = req.body;
+	const result = await pool.query(sql);
+	return res.json(result.rows);
 };
-
-//ERROR STATUSES
-//200 = success
-//300 = validation fail
-//400 = forbidden
-//500 = wrong operation
+//GetByUser_ID
+export const getUserById = async (req, res) => {
+	const { user_id } = req.params;
+	const sql = `select user_id, 
+                        username, password, first_name, last_name, phone 
+                from task_tracker.users where user_id = $1`;
+	const result = await pool.query(sql, [user_id]);
+	return res.json(result.rows);
+};
+//UPDATE USER
+export const putUser = async (req, res) => {
+	const sql = `update task_tracker.users
+                        set username = $1
+                    where user_id = $2`;
+	const body = req.body;
+	const user_id = req.params.user_id;
+	const parameters = [body.username, body.user_id];
+	const result = await pool.query(sql, parameters);
+	return res.json({ message: "User Updated" });
+};
+//DELETE USER
+export const deleteUser = async (req, res) => {
+	const sql = `delete from task_tracker.users where user_id = $1`;
+	const user_id = req.params.user_id;
+	const parameters = [user_id];
+	const result = await pool.query(sql, parameters);
+	return res.json({ message: "User removed" });
+};

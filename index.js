@@ -6,12 +6,17 @@ import { employee } from "./routes/employeeRoute.js";
 import { user } from "./routes/userRoute.js";
 import fs from "fs";
 import https from "https";
+//import { login } from "./routes/login.js";
+//import { register } from "./routes/register.js";
 
 dotenv.config();
 const app = express();
 const environment = process.env.NODE_ENV;
 let port = 4000;
 
+// if (environment === "development" || "local") {
+// 	port = 4000;
+// }
 if (environment === "production") {
 	port = 443;
 }
@@ -21,6 +26,8 @@ app.use(cors());
 app.use("/api", employee);
 app.use("/api", tasks);
 app.use("/api", user);
+// app.use("/api", login);
+// app.use("/api", register);
 
 if (environment === "production") {
 	const options = {
