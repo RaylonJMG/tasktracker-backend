@@ -3,7 +3,15 @@ import jwt from "jsonwebtoken";
 
 //LOGIN
 export const loginUser = async (req, res) => {
-	const sql = `select username, password, first_name, last_name from task_tracker.users where username = $1 and password = $2`;
+	const sql = `select 
+					username,
+					password,
+					first_name,
+					last_name,
+					phone
+				from task_tracker.users
+				where username = $1 and password = $2`;
+
 	const { username, password } = req.body;
 	const result = await pool.query(sql, [username, password]);
 
