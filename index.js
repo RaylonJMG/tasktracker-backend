@@ -11,7 +11,7 @@ import https from "https";
 
 dotenv.config();
 const app = express();
-const environment = process.env.NODE_ENVIRONMENT;
+const environment = process.env.NODE_ENV;
 let port = 4000;
 
 if (environment === "production") {
