@@ -2,9 +2,10 @@ import jwt from "jsonwebtoken";
 const secret = "Zy9Xw876";
 
 export const validateToken = (req, res, next) => {
-	const token = req.headers.authorization;
-	const newToken = token.replace("Bearer", "");
+	
 	try {
+		const token = req.headers.authorization;
+		const newToken = token.replace("Bearer ", "");
 		const result = jwt.verify(newToken, secret);
 		next();
 	} catch (err) {
