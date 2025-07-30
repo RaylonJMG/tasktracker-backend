@@ -11,7 +11,6 @@ export const loginUser = async (req, res) => {
 					phone
 				from task_tracker.users
 				where username = $1 and password = $2`;
-
 	const { username, password } = req.body;
 	const result = await pool.query(sql, [username, password]);
 
