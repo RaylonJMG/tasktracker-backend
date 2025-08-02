@@ -1,22 +1,22 @@
 import express from "express";
 import {
 	deleteUser,
-	getUser,
+	getAllUsers,
 	getUserById,
 	postUser,
 	putUser,
 } from "../controllers/user_controller.js";
 import { validateToken } from "../middleware/authValidation.js";
-import { registerUser } from "../controllers/register_controller.js";
-import { loginUser } from "../controllers/login_controller.js";
 
 export const user = express.Router();
 
-user.get("/user", validateToken, getUser);
-user.get("/user/:user_id", validateToken, getUserById);
+//CREATE USER
 user.post("/user", validateToken, postUser);
+//READ ALL USERS
+user.get("/user", validateToken, getAllUsers);
+//READ USER BY ID
+user.get("/user/:user_id", validateToken, getUserById);
+//UPDATE USER
 user.put("/user/:user_id", validateToken, putUser);
+// DELETE USER
 user.delete("/user/:user_id", validateToken, deleteUser);
-
-user.post("/register", validateToken, registerUser);
-user.post("/login", validateToken, loginUser);

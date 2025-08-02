@@ -1,7 +1,7 @@
 import express from "express";
 import {
 	deleteTasks,
-	getTasks,
+	getAllTasks,
 	getTasksById,
 	postTasks,
 	putTasks,
@@ -10,8 +10,13 @@ import { validateToken } from "../middleware/authValidation.js";
 
 export const tasks = express.Router();
 
-tasks.get("/tasks", validateToken, getTasks);
-tasks.get("/tasks/:task_id", validateToken, getTasksById);
+//CREATE TASKS
 tasks.post("/tasks", validateToken, postTasks);
+//GET ALL TASKS
+tasks.get("/tasks", validateToken, getAllTasks);
+//GET TASKS BY TASK_ID
+tasks.get("/tasks/:task_id", validateToken, getTasksById);
+//UPDATE TASKS
 tasks.put("/tasks/:task_id", validateToken, putTasks);
+//DELETE TASKS
 tasks.delete("/tasks/:task_id", validateToken, deleteTasks);

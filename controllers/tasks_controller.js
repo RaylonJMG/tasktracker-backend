@@ -8,14 +8,14 @@ export const postTasks = async (req, res) => {
 	const result = await pool.query(sql, parameters);
 	return res.json({ message: "Object Created" });
 };
-//GET TASKS
-export const getTasks = async (req, res) => {
+//GET ALL TASKS
+export const getAllTasks = async (req, res) => {
 	const sql = `select * from task_tracker.tasks`;
 	const body = req.body;
 	const result = await pool.query(sql);
 	return res.json(result.rows);
 };
-//GetByTask_Id
+//GET TASKS BY TASK_ID
 export const getTasksById = async (req, res) => {
 	const { tasks_id } = req.params;
 	const sql = `select * from task_tracker.tasks where tasks_id = $1`;

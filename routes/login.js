@@ -1,6 +1,7 @@
- import express from "express";
- import { loginUser } from "../controllers/login_controller.js";
+import express from "express";
+import { loginUser } from "../controllers/login_controller.js";
 
- export const login = express.Router();
+export const login = express.Router();
 
- login.post("/login", loginUser);
+//CREATE USER LOGIN
+login.post("/login", loginUser);

@@ -9,20 +9,15 @@ export const postEmployee = async (req, res) => {
 	return res.json({ message: "Object created" });
 };
 //READ EMPLOYEE
-export const getEmployee = async (req, res) => {
+export const getAllEmployees = async (req, res) => {
 	const sql = `select * from task_tracker.employee`;
-	const body = req.body;
 	const result = await pool.query(sql);
 	return res.json(result.rows);
 };
 //GetByEmployee_ID
 export const getEmployeeById = async (req, res) => {
 	const { employee_id } = req.params;
-	const sql = `select employee_id, 
-                        name, 
-                        department,
-                        role 
-                from task_tracker.employee where employee_id = $1`;
+	const sql = `select * from task_tracker.employee where employee_id = $1`;
 	const result = await pool.query(sql, [employee_id]);
 	return res.json(result.rows);
 };
