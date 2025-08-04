@@ -4,9 +4,9 @@ const secret = "Zy9Xw876";
 export const validateToken = (req, res, next) => {
 	try {
 		const token = req.headers.authorization;
-		const newToken = token.replace("Bearer", "");
+		const newToken = token.replace("Bearer ", "");
 		const result = jwt.verify(newToken, secret);
-		next();
+		next(); //TOKEN IS VALID, CONTINUE
 	} catch (err) {
 		return res
 			.status(400)
