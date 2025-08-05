@@ -1,11 +1,5 @@
 import express from "express";
-import {
-	deleteUser,
-	getAllUsers,
-	getUserById,
-	postUser,
-	putUser,
-} from "../controllers/user_controller.js";
+import { postUser } from "../controllers/user_controller.js";
 import { validateToken } from "../middleware/authValidation.js";
 
 export const user = express.Router();
