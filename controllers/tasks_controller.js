@@ -8,18 +8,32 @@ export const postTasks = async (req, res) => {
 	const result = await pool.query(sql, parameters);
 	return res.json({ message: "Object Created" });
 };
-//GET ALL TASKS
-export const getAllTasks = async (req, res) => {
-	const sql = `select * from task_tracker.tasks`;
-	const body = req.body;
-	const result = await pool.query(sql);
+//GET TASKS
+export const getTasksById = async (req, res) => {
+	const sql = `select 
+					a.tasks_id,
+					a.description,
+					a.status,
+					b.name as employee_name,
+					b.employee_id
+				from task_tracker.tasks a
+				inner join task_tracker.employee b on a.employee_id = b.employee_id
+				where a.employee_id =$1`;
+	const result = await pool.query(sql, [employee_id]);
 	return res.json(result.rows);
 };
-//GET TASKS BY TASK_ID
-export const getTasksById = async (req, res) => {
-	const { tasks_id } = req.params;
-	const sql = `select * from task_tracker.tasks where tasks_id = $1`;
-	const result = await pool.query(sql, [tasks_id]);
+//GET TASKS BY EMPLOYEE
+export const getEmployeeTasks = async (req, res) => {
+	const body = req.body;
+	const sql = `select 
+					a.tasks_id,
+					a.description,
+					a.status,
+					b.name as employee_name,
+					b.employee_id  
+				from task_tracker.tasks a
+				inner join task_tracker.employee b on a.employee_id = b.employee_id`;
+	const result = await pool.query(sql, [employee_id]);
 	return res.json(result.rows);
 };
 //UPDATE TASKS
