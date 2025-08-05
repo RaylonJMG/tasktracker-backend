@@ -1,7 +1,7 @@
 import express from "express";
 import {
 	deleteTasks,
-	getAllTasks,
+	getEmployeeTasks,
 	getTasksById,
 	postTasks,
 	putTasks,
@@ -13,9 +13,9 @@ export const tasks = express.Router();
 //CREATE TASKS
 tasks.post("/tasks", validateToken, postTasks);
 //GET ALL TASKS
-tasks.get("/tasks", validateToken, getAllTasks);
-//GET TASKS BY TASK_ID
-tasks.get("/tasks/:task_id", validateToken, getTasksById);
+tasks.get("/tasks", validateToken, getTasksById);
+//GET TASKS BY EMPLOYEE ID
+tasks.get("/tasks/:employee_id", validateToken, getEmployeeTasks);
 //UPDATE TASKS
 tasks.put("/tasks/:task_id", validateToken, putTasks);
 //DELETE TASKS
