@@ -1,8 +1,8 @@
 import { pool } from "../db/connection.js";
 import jwt from "jsonwebtoken";
 
-//LOGIN USER
-export const loginUser = async (req, res) => {
+//LOGIN USER AUTHENTICATION
+export const authLoginUser = async (req, res) => {
 	const sql = `select 
 					username,
 					password,
