@@ -42,9 +42,9 @@ export const getAllTasks = async (req, res) => {
 					b.name as employee_name,
 					b.employee_id
 				from task_tracker.tasks a
-				inner join task_tracker.employee b
+				join task_tracker.employee b
 					on a.employee_id = b.employee_id
-				order by a.tasks_id asc`;
+				order by b.employee_id asc`;
 	const result = await pool.query(sql, parameters);
 	return res.json(result.rows);
 };
