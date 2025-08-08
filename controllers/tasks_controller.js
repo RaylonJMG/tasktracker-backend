@@ -18,7 +18,7 @@ export const postTasksById = async (req, res) => {
 };
 //GET TASKS BY EMPLOYEE
 export const getTasksById = async (req, res) => {
-	const { employee_id } = req.params.employee_id;
+	const { employee_id } = req.params;
 	console.log("EMPLOYEE ID:", employee_id);
 	const sql = `select 
 					description,
