@@ -21,7 +21,7 @@ export const getTasksById = async (req, res) => {
 	const { employee_id } = req.params;
 	console.log("EMPLOYEE ID:", employee_id);
 	const sql = `select 
-					a.task_id,
+					a.task_id as tasks_id,
 					a.description,
 					a.status,
 					b.name as employee,
