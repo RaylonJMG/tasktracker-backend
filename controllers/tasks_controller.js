@@ -9,13 +9,13 @@ export const postTasks = async (req, res) => {
 	return res.json({ message: "Success: Task Added" });
 };
 //CREATE TASKS FOR SPECIFIC EMPLOYEE
-export const postTasksById = async (req, res) => {
-	const { employee_id } = req.params;
-	const { description, status } = req.body;
-	const sql = `insert into task_tracker.tasks(description, status, employee_id) values ($1, $2, $3) where employee_id = $4`;
-	const result = await pool.query(sql, parameters);
-	return res.json({ message: "Success: Task Added" });
-};
+// export const postTasksById = async (req, res) => {
+// 	const { employee_id } = req.params;
+// 	const { description, status } = req.body;
+// 	const sql = `insert into task_tracker.tasks(description, status, employee_id) values ($1, $2, $3) where employee_id = $4`;
+// 	const result = await pool.query(sql, parameters);
+// 	return res.json({ message: "Success: Task Added" });
+// };
 //GET TASKS BY EMPLOYEE
 export const getTasksById = async (req, res) => {
 	const { employee_id } = req.params;
@@ -36,7 +36,7 @@ export const getTasksById = async (req, res) => {
 //GET TASKS
 export const getAllTasks = async (req, res) => {
 	const sql = `select 
-					a.tasks_id,
+					a.task_id,
 					a.description,
 					a.status,
 					b.name as employee_name,
@@ -45,7 +45,7 @@ export const getAllTasks = async (req, res) => {
 				join task_tracker.employee b
 					on a.employee_id = b.employee_id
 				order by b.employee_id asc`;
-	const result = await pool.query(sql, parameters);
+	const result = await pool.query(sql);
 	return res.json(result.rows);
 };
 //UPDATE TASKS
@@ -54,9 +54,9 @@ export const putTasks = async (req, res) => {
 					set description = $1
 					status = $2
 					employee_id = $3
-					where tasks_id = $4`;
+					where task_id = $4`;
 	const body = req.body;
-	const { tasks_id } = req.params;
+	const { task_id } = req.params;
 	const parameters = [
 		body.task_id,
 		body.description,
@@ -68,9 +68,9 @@ export const putTasks = async (req, res) => {
 };
 //DELETE TASKS
 export const deleteTasks = async (req, res) => {
-	const sql = `delete from task_tracker.tasks where tasks_id = $1`;
-	const tasks_id = req.params.tasks_id;
-	const parameters = [tasks_id];
+	const sql = `delete from task_tracker.tasks where task_id = $1`;
+	const task_id = req.params.task_id;
+	const parameters = [task_id];
 	const result = await pool.query(sql, parameters);
 	return res.json({ message: "Task removed" });
 };

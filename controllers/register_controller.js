@@ -7,5 +7,5 @@ export const registerUser = async (req, res) => {
 	const { username, password, first_name, last_name, phone } = req.body;
 	const parameter = [username, password, first_name, last_name, phone];
 	const result = await pool.query(sql, parameter);
-	return res.json({ message: "User Created" });
+	return res.json({ message: "Success: New User Created" });
 };

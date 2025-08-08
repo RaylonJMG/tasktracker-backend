@@ -6,7 +6,7 @@ export const postUser = async (req, res) => {
 	const { username, password, first_name, last_name, phone } = req.body;
 	const parameters = [username, password, first_name, last_name, phone];
 	const result = await pool.query(sql, parameters);
-	return res.json({ message: "User Created" });
+	return res.json({ message: "Success: New User Created" });
 };
 
 // MAY BE UNNNECSSARY FOR CAPSTONE

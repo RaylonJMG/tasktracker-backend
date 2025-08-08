@@ -6,7 +6,7 @@ export const postEmployee = async (req, res) => {
 	const body = req.body;
 	const parameters = [body.name, body.department, body.role];
 	const result = await pool.query(sql, parameters);
-	return res.json({ message: "Object created" });
+	return res.json({ message: "Success: New employee created" });
 };
 //READ EMPLOYEE
 export const getAllEmployees = async (req, res) => {
@@ -39,7 +39,7 @@ export const putEmployee = async (req, res) => {
 	const employee_id = req.params.employee_id;
 	const parameters = [body.name, body.department, body.role, employee_id];
 	const result = await pool.query(sql, parameters);
-	return res.json({ message: "Object Updated" });
+	return res.json({ message: "Success: Employee Updated" });
 };
 //DELETE EMPLOYEE
 export const deleteEmployee = async (req, res) => {
@@ -47,5 +47,5 @@ export const deleteEmployee = async (req, res) => {
 	const employee_id = req.params.employee_id;
 	const parameters = [employee_id];
 	const result = await pool.query(sql, parameters);
-	return res.json({ message: "Object removed" });
+	return res.json({ message: "Success: Employee removed" });
 };
