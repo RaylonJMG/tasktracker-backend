@@ -24,7 +24,7 @@ export const getTasksById = async (req, res) => {
 					a.task_id,
 					a.description,
 					a.status,
-					b.name as employee_name,
+					b.name as employee,
 					b.employee_id
 				from task_tracker.tasks a
 				inner join task_tracker.employee b
