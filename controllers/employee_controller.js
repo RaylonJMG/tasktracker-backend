@@ -53,7 +53,7 @@ export const putEmployee = async (req, res) => {
 export const deleteEmployee = async (req, res) => {
 	const sql = `delete from task_tracker.employee where employee_id = $1`;
 	const { employee_id } = req.params;
-	const parameters = [employee_id];
-	const result = await pool.query(sql, parameters);
+	// const parameters = [employee_id];
+	const result = await pool.query(sql, [employee_id]);
 	return res.json({ message: "Success: Employee removed" });
 };

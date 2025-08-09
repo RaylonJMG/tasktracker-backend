@@ -52,17 +52,11 @@ export const getAllTasks = async (req, res) => {
 export const putTasks = async (req, res) => {
 	const sql = `update task_tracker.tasks
 					set description = $1
-					status = $2
-					employee_id = $3
-					where task_id = $4`;
+						status = $2
+					where task_id = $3`;
 	const body = req.body;
 	const { task_id } = req.params;
-	const parameters = [
-		body.task_id,
-		body.description,
-		body.status,
-		body.employee_id,
-	];
+	const parameters = [body.task_id, body.description, body.status, ,];
 	const result = await pool.query(sql, parameters);
 	return res.json({ message: "Task Updated" });
 };

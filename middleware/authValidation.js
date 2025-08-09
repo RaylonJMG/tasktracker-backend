@@ -9,7 +9,7 @@ export const validateToken = (req, res, next) => {
 		next(); //TOKEN IS VALID, CONTINUE
 	} catch (err) {
 		return res
-			.status(400)
+			.status(401)
 			.json({ message: "Token not valid", error: err.message });
 	}
 };
